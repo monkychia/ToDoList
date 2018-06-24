@@ -77,6 +77,14 @@ function AddElements(list, container, className, isButton){
     }
   }
 
+  function ClearCompletedTasks(){
+    completedList = [];
+    var currentList = JSON.parse(localStorage.getItem('ToDoList'));
+    localStorage.clear();
+    $('#completed').empty();
+    localStorage.setItem('ToDoList', JSON.stringify(currentList)); 
+  }
+
   var currentToDoList = JSON.parse(localStorage.getItem('ToDoList'));
   if(Array.isArray(currentToDoList)){
     AddElements(list, '#to-dos', 'to-do-item', true); 
@@ -88,10 +96,4 @@ function AddElements(list, container, className, isButton){
   }
 
 
-$('#clear-completed').on('click', function() {
-    completedList = [];
-    var currentList = JSON.parse(localStorage.getItem('ToDoList'));
-    localStorage.clear();
-    $('#completed').empty();
-    localStorage.setItem('ToDoList', JSON.stringify(currentList));    
-})
+$('#clear-completed').on('click', ClearCompletedTasks);
