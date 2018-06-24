@@ -86,3 +86,12 @@ function AddElements(list, container, className, isButton){
   if(Array.isArray(currentCompleted)){
     AddElements(currentCompleted, '#completed', 'completed', false);
   }
+
+
+$('#clear-completed').on('click', function() {
+    completedList = [];
+    var currentList = JSON.parse(localStorage.getItem('ToDoList'));
+    localStorage.clear();
+    $('#completed').empty();
+    localStorage.setItem('ToDoList', JSON.stringify(currentList));    
+})
